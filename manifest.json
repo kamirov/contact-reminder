@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Contact Reminder",
+  "version": "1.0",
+  "description": "Remind yourself to contact people regularly.",
+  "permissions": ["storage", "alarms"],
+  "action": {
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "16": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  }
+}

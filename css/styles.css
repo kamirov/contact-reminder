@@ -1,0 +1,159 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+}
+
+#tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+  outline: none;
+}
+
+.tab.active {
+  background-color: #fff;
+  border-bottom: 2px solid #007bff;
+  font-weight: bold;
+}
+
+.screen {
+  display: none;
+  padding: 10px;
+}
+
+.screen.active {
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+li button {
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+li button:hover {
+  background-color: #0056b3;
+}
+
+li button:active {
+  background-color: #004080;
+}
+
+li input[type="text"],
+li input[type="number"] {
+  margin-right: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex-grow: 1;
+}
+
+#addContactButton {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #28a745;
+  color: #fff;
+}
+
+#addContactButton:hover {
+  background-color: #218838;
+}
+
+#addContactButton:active {
+  background-color: #1e7e34;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: calc(50% - 10px);
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#newContactName {
+  margin-right: 10px;
+}
+
+/* Highlight the contacts due for action */
+li.due {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+/* Ensure buttons are same size and aligned */
+li .button-container {
+  display: flex;
+  gap: 5px;
+}
+
+li button {
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Import/Export Button Styling */
+#importExportContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#exportButton,
+#importButton {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #17a2b8;
+  color: #fff;
+  text-align: center;
+}
+
+#exportButton:hover,
+#importButton:hover {
+  background-color: #138496;
+}
+
+#exportButton:active,
+#importButton:active {
+  background-color: #0f6674;
+}

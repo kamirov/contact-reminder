@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Specify ECMAScript target version
+    "module": "commonjs", // Module code generation
+    "outDir": "dist", // Directory to output transpiled files
+    "rootDir": "./src", // Directory containing TypeScript source files
+    "strict": true // Enable all strict type-checking options
+  },
+  "include": ["src/**/*.ts"], // Include all TypeScript files in src
+  "exclude": ["node_modules"] // Exclude node_modules from transpiling
+}

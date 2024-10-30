@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <title>Contact Reminder</title>
+  </head>
+  <body>
+    <div id="tabs">
+      <button id="viewTab" class="tab active">View Contacts</button>
+      <button id="editTab" class="tab">Edit Contacts</button>
+    </div>
+    <div id="viewScreen" class="screen active">
+      <ul id="contactList">
+        <!-- List of contacts dynamically added here -->
+      </ul>
+    </div>
+    <div id="editScreen" class="screen">
+      <ul id="editContactList">
+        <!-- Editable list of contacts dynamically added here -->
+      </ul>
+      <div>
+        <input type="text" id="newContactName" placeholder="Contact Name" />
+        <input
+          type="number"
+          id="contactFrequency"
+          placeholder="Frequency (days)"
+        />
+        <button id="addContactButton">Add Contact</button>
+      </div>
+      <div id="importExportContainer">
+        <button id="exportButton">Export Contacts</button>
+        <button id="importButton">Import Contacts</button>
+      </div>
+    </div>
+    <script src="../dist/popup.js"></script>
+  </body>
+</html>
+  
