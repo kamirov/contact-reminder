@@ -20,13 +20,15 @@
       <ul id="editContactList">
         <!-- Editable list of contacts dynamically added here -->
       </ul>
-      <div>
-        <input type="text" id="newContactName" placeholder="Contact Name" />
-        <input
-          type="number"
-          id="contactFrequency"
-          placeholder="Frequency (days)"
-        />
+      <div id="addContactForm">
+        <div id="addContactInputContainer">
+            <input type="text" id="newContactName" placeholder="Contact Name" />
+            <input
+              type="number"
+              id="contactFrequency"
+              placeholder="Frequency (days)"
+            />
+        </div>
         <button id="addContactButton">Add Contact</button>
       </div>
       <div id="importExportContainer">
@@ -37,4 +39,3 @@
     <script src="../dist/popup.js"></script>
   </body>
 </html>
-  

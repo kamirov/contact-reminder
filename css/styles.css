@@ -157,3 +157,17 @@ li button {
 #importButton:active {
   background-color: #0f6674;
 }
+
+#editContactList li {
+  display: flex;
+  align-items: stretch;
+}
+
+#editContactList li * {
+  margin-bottom: 0;
+}
+
+#addContactInputContainer {
+  display: flex;
+  justify-content: space-between;
+}
