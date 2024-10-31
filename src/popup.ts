@@ -80,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (name && !isNaN(frequency)) {
       const nextContactDate = new Date();
-      nextContactDate.setDate(nextContactDate.getDate() + frequency);
+      const offsetFactor = 0.8 + Math.random() * 0.4;
+      const adjustedFrequency = Math.round(frequency * offsetFactor);
+      nextContactDate.setDate(nextContactDate.getDate() + adjustedFrequency);
 
       const newContact: Contact = {
         name,
@@ -118,18 +120,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (diffInDays <= 0) return "today";
       if (diffInDays === 1) return "in 1 day";
-      if (diffInDays < 7) return `in ${diffInDays} days`;
-      if (diffInDays < 30) return `in ${Math.ceil(diffInDays / 7)} weeks`;
-      if (diffInDays < 365) return `in ${Math.ceil(diffInDays / 30)} months`;
-      return `in ${Math.ceil(diffInDays / 365)} years`;
+      if (diffInDays < 7) return `in ${diffInDays} day(s)`;
+      if (diffInDays < 30) return `in ${Math.ceil(diffInDays / 7)} week(s)`;
+      if (diffInDays < 365) return `in ${Math.ceil(diffInDays / 30)} month(s)`;
+      return `in ${Math.ceil(diffInDays / 365)} year(s)`;
     }
     contactList.innerHTML = "";
 
     contacts.forEach((contact, index) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${
-        contact.name
-      } - Next contact: ${formatRelativeTime(contact.nextContactDate)}`;
+      listItem.textContent = `${contact.name} (${formatRelativeTime(
+        contact.nextContactDate
+      )})`;
 
       if (new Date() >= contact.nextContactDate) {
         listItem.classList.add("due");
@@ -146,8 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
       buttonContainer.appendChild(logButton);
       logButton.addEventListener("click", () => {
         contact.nextContactDate = new Date();
+        const offsetFactor = 0.8 + Math.random() * 0.4;
+        const adjustedFrequency = Math.round(contact.frequency * offsetFactor);
         contact.nextContactDate.setDate(
-          contact.nextContactDate.getDate() + contact.frequency
+          contact.nextContactDate.getDate() + adjustedFrequency
         );
         saveContacts();
         updateViewList();
