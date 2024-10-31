@@ -111,13 +111,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Update the view list
   function updateViewList() {
+    function formatRelativeTime(date: Date): string {
+      const now = new Date();
+      const diffInMs = date.getTime() - now.getTime();
+      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
+
+      if (diffInDays <= 0) return "today";
+      if (diffInDays === 1) return "in 1 day";
+      if (diffInDays < 7) return `in ${diffInDays} days`;
+      if (diffInDays < 30) return `in ${Math.ceil(diffInDays / 7)} weeks`;
+      if (diffInDays < 365) return `in ${Math.ceil(diffInDays / 30)} months`;
+      return `in ${Math.ceil(diffInDays / 365)} years`;
+    }
     contactList.innerHTML = "";
 
     contacts.forEach((contact, index) => {
       const listItem = document.createElement("li");
       listItem.textContent = `${
         contact.name
-      } - Next contact: ${contact.nextContactDate.toDateString()}`;
+      } - Next contact: ${formatRelativeTime(contact.nextContactDate)}`;
 
       if (new Date() >= contact.nextContactDate) {
         listItem.classList.add("due");
@@ -130,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       listItem.appendChild(buttonContainer);
 
       const logButton = document.createElement("button");
-      logButton.textContent = "Log Contact";
+      logButton.textContent = "Log";
       buttonContainer.appendChild(logButton);
       logButton.addEventListener("click", () => {
         contact.nextContactDate = new Date();
@@ -142,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const delayButton = document.createElement("button");
-      delayButton.textContent = "Delay";
+      delayButton.textContent = "Later";
       buttonContainer.appendChild(delayButton);
       delayButton.addEventListener("click", () => {
         contact.nextContactDate.setDate(contact.nextContactDate.getDate() + 1);
