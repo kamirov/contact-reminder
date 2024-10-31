@@ -1,3 +1,10 @@
+// TODO: Combing with interface from background.ts
+interface Contact {
+  name: string;
+  frequency: number; // in days
+  nextContactDate: Date;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const viewTab = document.getElementById("viewTab") as HTMLButtonElement;
   const editTab = document.getElementById("editTab") as HTMLButtonElement;
@@ -38,12 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     console.error("One or more elements are missing in the popup HTML");
     return;
-  }
-
-  interface Contact {
-    name: string;
-    frequency: number; // in days
-    nextContactDate: Date;
   }
 
   let contacts: Contact[] = [];
@@ -147,23 +148,39 @@ document.addEventListener("DOMContentLoaded", () => {
       logButton.textContent = "Log";
       buttonContainer.appendChild(logButton);
       logButton.addEventListener("click", () => {
-        contact.nextContactDate = new Date();
-        const offsetFactor = 0.8 + Math.random() * 0.4;
-        const adjustedFrequency = Math.round(contact.frequency * offsetFactor);
-        contact.nextContactDate.setDate(
-          contact.nextContactDate.getDate() + adjustedFrequency
+        chrome.runtime.sendMessage(
+          { type: "logContact", name: contact.name },
+          (response) => {
+            console.log("Contact logged successfully.");
+            contact.nextContactDate = new Date();
+            const offsetFactor = 0.8 + Math.random() * 0.4;
+            const adjustedFrequency = Math.round(
+              contact.frequency * offsetFactor
+            );
+            contact.nextContactDate.setDate(
+              contact.nextContactDate.getDate() + adjustedFrequency
+            );
+            saveContacts();
+            updateViewList();
+          }
         );
-        saveContacts();
-        updateViewList();
       });
 
       const delayButton = document.createElement("button");
       delayButton.textContent = "Later";
       buttonContainer.appendChild(delayButton);
       delayButton.addEventListener("click", () => {
-        contact.nextContactDate.setDate(contact.nextContactDate.getDate() + 1);
-        saveContacts();
-        updateViewList();
+        chrome.runtime.sendMessage(
+          { type: "delayContact", name: contact.name },
+          (response) => {
+            console.log("Contact delayed successfully.");
+            contact.nextContactDate.setDate(
+              contact.nextContactDate.getDate() + 1
+            );
+            saveContacts();
+            updateViewList();
+          }
+        );
       });
     });
   }
