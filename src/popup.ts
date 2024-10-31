@@ -100,7 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Save contacts to chrome.storage
   function saveContacts(): void {
-    chrome.storage.local.set({ contacts }, () => {
+    const serializedContacts = contacts.map((contact) => ({
+      ...contact,
+      nextContactDate: contact.nextContactDate.toISOString(),
+    }));
+    chrome.storage.local.set({ contacts: serializedContacts }, () => {
       console.log("Contacts saved");
     });
   }
